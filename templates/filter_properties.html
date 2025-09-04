@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Filter Properties</h2>
+
+<!-- Filter Form -->
+<form method="GET" action="/filter" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label>Min Price</label>
+        <input type="number" name="min_price" class="form-control" placeholder="Min Price">
+    </div>
+    <div class="col-md-3">
+        <label>Max Price</label>
+        <input type="number" name="max_price" class="form-control" placeholder="Max Price">
+    </div>
+    <div class="col-md-3">
+        <label>Type</label>
+        <select name="type" class="form-select">
+            <option value="">Any</option>
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Commercial</option>
+            <option>Land</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label>Status</label>
+        <select name="status" class="form-select">
+            <option value="">Any</option>
+            <option>For Sale</option>
+            <option>For Rent</option>
+            <option>Sold</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Apply Filter</button>
+        <a href="/" class="btn btn-secondary">Reset</a>
+    </div>
+</form>
+
+<!-- Filter Results -->
+<div class="row">
+    {% for p in properties %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/' ~ p[12]) }}" class="card-img-top" height="200">
+            <div class="card-body">
+                <h5 class="card-title">{{ p[1] }}</h5>
+                <p class="card-text"><strong>${{ p[3] }}</strong> - {{ p[4] }}</p>
+                <a href="/property/{{ p[0] }}" class="btn btn-outline-primary">View</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>No properties match your filter criteria.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<a href="/add" class="btn btn-success mb-3">Add Property</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Location</th><th>Price</th><th>Type</th><th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in properties %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>${{ p[3] }}</td>
+            <td>{{ p[4] }}</td>
+            <td>
+                <a href="/edit/{{ p[0] }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete/{{ p[0] }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

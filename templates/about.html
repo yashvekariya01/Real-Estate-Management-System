@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Real Estate Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Real Estate</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/saved_properties">Saved Properties</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- About Section -->
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="mb-4">About Us</h1>
+            <p class="lead">
+                Welcome to our Real Estate Management System!  
+                We help you find the best properties at the best prices. Whether you are looking for your dream home, a cozy apartment, or a commercial space, we’ve got you covered.
+            </p>
+            <p>
+                Our mission is to simplify the process of buying, selling, and renting properties by providing a user-friendly platform with advanced search tools, detailed listings, and expert support.
+            </p>
+            <p>
+                With years of experience in the real estate industry, our team is dedicated to bringing transparency and trust to property dealings.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="About Us" class="img-fluid rounded shadow">
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    &copy; 2025 Real Estate Management System. All Rights Reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

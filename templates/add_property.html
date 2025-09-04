@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Property</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6 mb-3"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Location</label><input type="text" name="location" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Price</label><input type="number" name="price" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Type</label>
+            <select name="type" class="form-select" required>
+                <option>House</option><option>Apartment</option><option>Villa</option><option>Commercial</option><option>Land</option>
+            </select>
+        </div>
+        <div class="col-md-12 mb-3"><label>Description</label><textarea name="description" class="form-control" required></textarea></div>
+        <div class="col-md-6 mb-3"><label>Bedrooms</label><input type="number" name="bedrooms" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Bathrooms</label><input type="number" name="bathrooms" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Area (sq ft)</label><input type="number" name="area_sqft" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Status</label>
+            <select name="status" class="form-select" required>
+                <option>For Sale</option><option>For Rent</option><option>Sold</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3"><label>Year Built</label><input type="number" name="year_built" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label>Contact Number</label><input type="text" name="contact_number" class="form-control" required></div>
+        <div class="col-md-12 mb-3"><label>Image</label><input type="file" name="image" class="form-control" required></div>
+    </div>
+    <button class="btn btn-primary">Add Property</button>
+</form>
+{% endblock %}

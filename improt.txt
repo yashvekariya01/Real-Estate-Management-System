@@ -1,0 +1,64 @@
+-- ================
+-- Create Database
+-- ================
+CREATE DATABASE IF NOT EXISTS realestate_test;
+USE realestate_test;
+
+-- ========================
+-- USERS TABLE (Admin + User)
+-- ========================
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role ENUM('admin','user') NOT NULL
+);
+
+-- ========================================================================
+-- Insert default admin (only login possible, no registration as admin)
+-- ========================================================================
+INSERT INTO users (username, email, password, role) 
+VALUES ('admin', 'admin@example.com', 'admin123', 'admin');
+
+-- ========================
+-- PROPERTIES TABLE
+-- ========================
+CREATE TABLE properties (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    property_name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    price DECIMAL(12,2) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    bedrooms INT NOT NULL,
+    bathrooms INT NOT NULL,
+    area_sqft DECIMAL(10,2) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    year_built INT NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+    image VARCHAR(255) NOT NULL
+);
+
+-- ========================
+-- SAVED PROPERTIES TABLE
+-- ========================
+CREATE TABLE saved_properties (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    property_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE
+);
+
+-- ================================================================================================
+-- Sample properties (image filenames only; place matching files into static/images)
+-- ================================================================================================
+INSERT INTO properties
+  (property_name, location, price, type, description, bedrooms, bathrooms, area_sqft, status, year_built, contact_number, image)
+VALUES
+('Sunshine Residency', 'Ahmedabad, Gujarat', 7500000.00, 'Apartment', 'Spacious 3BHK apartment with modern amenities and close to schools.', 3, 2, 1450, 'For Sale', 2019, '9876543210', 'sunshine_residency.jpg'),
+('Palm Green Villa', 'Pune, Maharashtra', 18500000.00, 'Villa', 'Luxurious 5BHK villa with private garden and swimming pool.', 5, 4, 3500, 'For Sale', 2021, '9123456780', 'palm_green_villa.jpg'),
+('Lakeview House', 'Bengaluru, Karnataka', 9500000.00, 'House', 'Independent 2BHK house with garden and covered parking.', 2, 2, 1200, 'Sold', 2018, '9812345670', 'lakeview_house.jpg'),
+('Green Meadows Land', 'Jaipur, Rajasthan', 3200000.00, 'Land', 'Residential land plot in a prime locality with easy access to markets.', 0, 0, 2400, 'For Sale', 2020, '9898765432', 'green_meadows_land.jpg'),
+('Royal Heights Commercial', 'Delhi', 14500000.00, 'Commercial', 'Premium commercial office space with rooftop terrace and city view.', 0, 2, 2800, 'For Rent', 2022, '9001234567', 'royal_heights_commercial.jpg');

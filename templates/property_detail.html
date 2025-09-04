@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{ url_for('static', filename='images/' ~ property[12]) }}" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-6">
+        <h2>{{ property[1] }}</h2>
+        <ul class="list-group mb-3">
+            <li class="list-group-item"><strong>Location:</strong> {{ property[2] }}</li>
+            <li class="list-group-item"><strong>Price:</strong> ${{ property[3] }}</li>
+            <li class="list-group-item"><strong>Type:</strong> {{ property[4] }}</li>
+            <li class="list-group-item"><strong>Description:</strong> {{ property[5] }}</li>
+            <li class="list-group-item"><strong>Bedrooms:</strong> {{ property[6] }}</li>
+            <li class="list-group-item"><strong>Bathrooms:</strong> {{ property[7] }}</li>
+            <li class="list-group-item"><strong>Area:</strong> {{ property[8] }} sq. ft.</li>
+            <li class="list-group-item"><strong>Status:</strong> {{ property[9] }}</li>
+            <li class="list-group-item"><strong>Year Built:</strong> {{ property[10] }}</li>
+            <li class="list-group-item"><strong>Contact:</strong> {{ property[11] }}</li>
+        </ul>
+
+        {% if session.get('user_id') and session.get('role') == 'user' %}
+            <form action="/save_property/{{ property[0] }}" method="post">
+                <button type="submit" class="btn btn-success">💾 Save Property</button>
+            </form>
+        {% elif not session.get('user_id') %}
+            <a href="/login" class="btn btn-outline-primary">Login to Save Property</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

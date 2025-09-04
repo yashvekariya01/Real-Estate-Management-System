@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Available Properties</h2>
+<a href="/filter" class="btn btn-primary mb-3">Filter Properties</a>
+<div class="row">
+    {% for p in properties %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/' ~ p[12]) }}" class="card-img-top" height="200">
+            <div class="card-body">
+                <h5 class="card-title">{{ p[1] }}</h5>
+                <p class="card-text"><strong>${{ p[3] }}</strong> - {{ p[4] }}</p>
+                <a href="/property/{{ p[0] }}" class="btn btn-outline-primary">View</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>No properties found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Property</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>Name</label>
+            <input type="text" name="name" value="{{ property[1] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Location</label>
+            <input type="text" name="location" value="{{ property[2] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Price</label>
+            <input type="number" name="price" value="{{ property[3] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Type</label>
+            <select name="type" class="form-select" required>
+                <option {% if property[4] == 'House' %}selected{% endif %}>House</option>
+                <option {% if property[4] == 'Apartment' %}selected{% endif %}>Apartment</option>
+                <option {% if property[4] == 'Villa' %}selected{% endif %}>Villa</option>
+                <option {% if property[4] == 'Commercial' %}selected{% endif %}>Commercial</option>
+                <option {% if property[4] == 'Land' %}selected{% endif %}>Land</option>
+            </select>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control" required>{{ property[5] }}</textarea>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Bedrooms</label>
+            <input type="number" name="bedrooms" value="{{ property[6] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Bathrooms</label>
+            <input type="number" name="bathrooms" value="{{ property[7] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Area (sq ft)</label>
+            <input type="number" name="area_sqft" value="{{ property[8] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Status</label>
+            <select name="status" class="form-select" required>
+                <option {% if property[9] == 'For Sale' %}selected{% endif %}>For Sale</option>
+                <option {% if property[9] == 'For Rent' %}selected{% endif %}>For Rent</option>
+                <option {% if property[9] == 'Sold' %}selected{% endif %}>Sold</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Year Built</label>
+            <input type="number" name="year_built" value="{{ property[10] }}" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Contact Number</label>
+            <input type="text" name="contact_number" value="{{ property[11] }}" class="form-control" required>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label>Image</label>
+            <input type="file" name="image" class="form-control">
+            <small>Leave blank to keep current image</small>
+            <div class="mt-2">
+                <img src="{{ url_for('static', filename='images/' ~ property[12]) }}" width="200" class="rounded">
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-warning">Update Property</button>
+</form>
+{% endblock %}
